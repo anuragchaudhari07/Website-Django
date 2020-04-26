@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% extends "base_for_paytm.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+
+<div class="row  d-flex justify-content-center mt-5">
+  <div class="col-12">
+    {% if response.RESPCODE == '01' %}
+      <div class="alert alert-success d-flex justify-content-center">
+        <h3>Payment Successful</h3>
+      </div>
+    {% else %}
+      <div class="alert alert-danger d-flex justify-content-center">
+        <h3>Payment Failed</h3>
+      </div>
+    {% endif%}
+
+    <div class="card">
+      <div class="card-body">
+        <h3 class='mb-3'>Purchase details</h3>
+        <hr>
+        <p><span class='text-secondary'>Complaint ID:  </span>{{response.ORDERID}}</p>
+        <p><span class='text-secondary'>Status:  </span>{{response.STATUS}}</p>
+        <p><span class='text-secondary'>Transaction ID:  </span>{{response.TXNID}}</p>
+        <p><span class='text-secondary'>Transaction date:  </span>{{response.TXNDATE}}</p>
+        <p><span class='text-secondary'>Amount:  </span>{{response.TXNAMOUNT}}</p>
+      </div>
+    </div>
+
+    <a  class="btn btn-outline-primary mt-2" href="/">Home</a>
+  </div>
+</div>
+
+<script>
+function delayRedirect(){
+    document.getElementById('delayMsg').innerHTML = 'click on Home OR you\'ll be redirected after <span id="countDown">10</span> seconds....';
+    var count = 10;
+    setInterval(function(){
+        count--;
+        document.getElementById('countDown').innerHTML = count;
+        if (count == 0) {
+            window.location = '/';
+        }
+    },1000);
+}
+
+</script>
+
+<div id="delayMsg"></div>
+<script>
+delayRedirect();
+</script>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="container ">
+
+      <div class="paytm_body">
+
+
+
+        <div class="row">
+            <div class="col-50">
+              <label for="name">Respond</label>
+              <label>{{response.RESPMSG}}</label>
+            </div>
+          </div>
+
+        <div class="row">
+            <div class="col-50">
+              <label for="name">Transaction ID :</label>
+              <label>{{response.TXNID}}</label>
+            </div>
+          </div>
+
+        <div class="row">
+            <div class="col-50">
+              <label for="name">Transaction Amount :</label>
+              <label>{{response.TXNAMOUNT}}</label>
+            </div>
+          </div>
+
+        <div class="row">
+            <div class="col-50">
+              <label for="name">Transaction Status :</label>
+              <label>{{response.STATUS}}</label>
+            </div>
+          </div>
+
+
+        <div class="row">
+            <div class="col-50">
+              <label for="name">Transaction Dates :</label>
+              <label> {{response.TXNDATE}}</label>
+            </div>
+          </div>
+
+
+
+    </div>
+
+        <div class="col my-4">
+
+            <h3>Payment status regarding your order Id {{response.ORDERID}}</h3>
+            {% if response.RESPCODE == '01' %}
+            ORDER SUCCESS
+            {% else %}
+            ORDER FAILURE
+            {% endif%}
+
+        </div>
+
+        <a  class="btn btn-success" href="/">Back</a>
+    </div> -->

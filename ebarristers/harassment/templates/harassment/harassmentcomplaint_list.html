@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+
+<body>
+  {% for complaint in object_list %}
+  <div class="card mt-5">
+    <div class="card-body">
+      <div class="form-row mb-2">
+          <div class="col-12 col-md-4">
+            <h5>Name of Complainant</h5>
+            {{ complaint.o_name }}
+          </div>
+
+          <div class="col-12 col-md-4">
+            <h5>Complaint Filed Date</h5>
+            {{ complaint.c_filed }}
+          </div>
+
+          <div class="col-12 col-md-4 mt-3">
+            <a href="{% url 'harassment:detail_h' complaint.hc_id %}">View Details</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+    <div class="card mt-5">
+      <div class="card-body">
+        <h4 class='text-center text-secondary'>You don't have any registered complaint yet</h4>
+      </div>
+    </div>
+
+  {% endfor %}
+
+</body>
+
+{% endblock %}

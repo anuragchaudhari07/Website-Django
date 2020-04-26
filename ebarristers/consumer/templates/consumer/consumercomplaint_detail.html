@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+<body>
+  <div class="card mt-5 mb-3">
+    <div class="card-body">
+      <h3 class='mb-3'>Personal Details</h3>
+      <hr>
+      <div class="form-row">
+          <div class="col-12 col-md-6">
+            <p><strong>Name:  </strong>{{ consumercomplaint.o_name }}</p>
+            <p><strong>Email:  </strong>{{ consumercomplaint.o_email }}</p>
+            <p><strong>Contact:  </strong>{{ consumercomplaint.o_no }}</p>
+
+          </div>
+
+          <div class="col-12 col-md-6">
+            <p><strong>State:  </strong>{{ consumercomplaint.o_state }}</p>
+            <p><strong>City:  </strong>{{ consumercomplaint.o_city }}</p>
+          </div>
+      </div>
+    </div>
+  </div>
+
+ <div class="card">
+   <div class="card-body">
+     <h3 class='mb-3'>Complaint Details</h3>
+     <hr>
+      <div class="form-row">
+          <div class="col-12 col-md-6">
+            <p><strong>Complaint Title:  </strong>{{ consumercomplaint.c_title }}</p>
+            <p><strong>Company Name:  </strong>{{ consumercomplaint.comp_name }}</p>
+            <p><strong>Contact:  </strong>{{ consumercomplaint.comp_no }}</p>
+            <p><strong>Email:  </strong>{{ consumercomplaint.comp_email }}</p>
+
+          </div>
+
+          <div class="col-12 col-md-6">
+            <p><strong>Date of Dispute:  </strong>{{ consumercomplaint.date_dis }}</p>
+            <p><strong>Claim Amount:  </strong>{{ consumercomplaint.claim_amt }}</p>
+            <p><strong>Brief Description:  </strong>{{ consumercomplaint.c_description }}</p>
+          </div>
+      </div>
+   </div>
+</div>
+  {% if consumercomplaint.p_status == 1 %}
+  <div class="card mt-3">
+    <div class="card-body">
+      <h3 class='mb-3'>Complaint Tracking</h3>
+      <hr>
+      <div class="col-12 col-md-6">
+        <p><strong>Complaint Status:  </strong>{{ consumercomplaint.admin_reply }}</p>
+
+        {% if consumercomplaint.admin_document %}
+          <p><strong>Complaint related documents:  </strong><a href="{{ consumercomplaint.admin_document.url }}">Click here</a></p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-body">
+      <h3 class='mb-3'>Payment Details</h3>
+      <hr>
+      <p><strong>Order ID:  </strong>{{ consumercomplaint.new_cid }}</p>
+      <p><strong>Payment status:  </strong>Success</p>
+      <p><strong>Transaction ID:  </strong>{{ consumercomplaint.txn_id }}</p>
+      <p><strong>Payment Date:  </strong>{{ consumercomplaint.p_date }}</p>
+      <p><strong>Amount:  </strong>{{ consumercomplaint.c_amt }}</p>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="d-flex justify-content-between mb-5">
+    <a href="{% url 'consumer:update_c' object.cc_id %}" class="mt-2">
+      <svg class="bi bi-pencil-square" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15.502 1.94a.5.5 0 010 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 01.707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 00-.121.196l-.805 2.414a.25.25 0 00.316.316l2.414-.805a.5.5 0 00.196-.12l6.813-6.814z"/>
+      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-6a.5.5 0 00-1 0v6a.5.5 0 01-.5.5h-11a.5.5 0 01-.5-.5v-11a.5.5 0 01.5-.5H9a.5.5 0 000-1H2.5A1.5 1.5 0 001 2.5v11z" clip-rule="evenodd"/>
+      </svg>
+    </a>
+
+    {% if consumercomplaint.p_status == 0 %}
+    <a class="btn btn-outline-primary mt-2" href="{% url 'consumer:payment' object.cc_id %}">Payment</a>
+    {% endif %}
+
+  </div>
+
+
+</body>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <table  style="background-color: antiquewhite;  border: none;">
+
+    <tr>
+      <td class="td_text" >Name :</td>
+      <td>{{ consumercomplaint.o_name }}</td>
+    </tr>
+
+
+
+    <tr>
+      <td class="td_text" >E-mail :</td>
+      <td>{{ consumercomplaint.o_email }}</td>
+    </tr>
+
+    <tr>
+      <td class="td_text" >Contact No :</td>
+      <td>{{ consumercomplaint.o_no }}</td>
+    </tr>
+    <tr>
+      <td class="td_text" >State :</td>
+      <td>{{ consumercomplaint.o_state }}</td>
+    </tr>
+
+    <tr>
+      <td class="td_text" >City :</td>
+      <td>{{ consumercomplaint.o_city }}</td>
+    </tr>
+
+    <tr>
+      <td class="td_text" >Title :</td>
+      <td>{{ consumercomplaint.c_title }}</td>
+    </tr>
+    <tr>
+      <td class="td_text" >Company Name :</td>
+      <td>{{ consumercomplaint.comp_name }}</td>
+    </tr>
+
+    <tr>
+      <td class="td_text" >Company Number :</td>
+      <td>{{ consumercomplaint.comp_no }}</td>
+    </tr>
+
+    <tr>
+      <td class="td_text" >Company Email :</td>
+      <td>{{consumercomplaint.comp_email }}</td>
+    </tr>
+
+    <tr>
+      <td class="td_text" >Desp Date :</td>
+      <td>{{ consumercomplaint.date_dis }}</td>
+    </tr>
+
+    <tr>
+      <td class="td_text">  Claim Amount :</td>
+      <td>{{ consumercomplaint.claim_amt }}</td>
+    </tr>
+    <tr>
+      <td class="td_text" >Description:</td>
+      <td>{{  consumercomplaint.c_description }}</td>
+    </tr>
+
+
+  </table> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Detail View</title>
+  </head>
+  <body>
+    <h1>Detail View</h1> -->
+<!-- fields = ('o_name','o_email','o_no','o_state','o_city','c_type','c_title','comp_name','date_dis','comp_no','comp_email','c_description','claim_amt',) -->
+<!-- <p>{{ consumercomplaint.o_name }}</p>
+      <p>{{ consumercomplaint.o_email }}</p>
+      <p>{{ consumercomplaint.o_no }}</p>
+      <p>{{ consumercomplaint.o_state }}</p>
+      <p>{{ consumercomplaint.o_city }}</p>
+
+      <p>{{ consumercomplaint.c_title }}</p>
+      <p>{{ consumercomplaint.comp_name }}</p>
+      <p>{{ consumercomplaint.comp_no }}</p>
+      <p>{{ consumercomplaint.comp_email }}</p>
+      <p>{{ consumercomplaint.date_dis }}</p>
+      <p>{{ consumercomplaint.claim_amt }}</p>
+      <p>{{ consumercomplaint.c_description }}</p>
+
+      {% if consumercomplaint.p_status == 0 %}
+        <a href="{% url 'consumer:payment' object.cc_id %}">Payment</a>
+      {% endif %}
+
+      <a href="{% url 'consumer:update_c' object.cc_id %}">Edit</a>
+
+
+
+
+  </body>
+</html> -->

@@ -1,0 +1,108 @@
+
+/* .consu_btn {
+  margin-top: 20px;
+}
+
+.td_text {
+  font-weight: bold;
+} */
+
+
+@media (max-width: 800px) {
+    .row {
+      flex-direction: column-reverse;
+    }
+    .col-25 {
+      margin-bottom: 20px;
+    }
+  }
+
+
+/* .navbar:hover{
+    background-color: blanchedalmond;
+} */
+
+  /* .row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 0 -16px;
+  }
+
+  .col-25 {
+    -ms-flex: 25%;
+    flex: 25%;
+  }
+
+  .col-50 {
+    -ms-flex: 50%;
+    flex: 50%;
+  }
+
+  .col-75 {
+    -ms-flex: 75%;
+    flex: 75%;
+  }
+
+  .col-25,
+  .col-50,
+  .col-75 {
+    padding: 0 16px;
+  }
+
+  .container_new {
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    margin-top: 20px;
+  } */
+
+/* .left{
+
+  display: inline-block;
+  width: 50%;
+  margin: 7px 2px;
+  padding: 40px;
+
+}
+.right{
+
+  display: inline-block;
+  width: 30%;
+  margin: 7px 2px;
+  padding: 40px;
+
+
+}
+
+.card_margin{
+  margin: 7px;
+  border: solid grey 2px;
+  border-radius: 15px;
+
+} */
+
+/* .card_margin:hover{
+  background-color: rgb(233, 222, 222);
+} */
+
+/* .paytm_body{
+  margin: 71px 189px;
+  padding: 10px 10px;
+  border: 2px solid;
+  display: inline-block;
+  width: 50%;
+  background-color: #9cff9c;
+} */
+
+.font-class {
+    font-family: 'Saira Semi Condensed', sans-serif;
+    font-family: 'Bellota Text', cursive;
+    font-family: 'Krub', sans-serif;
+}
+
+.font_class {
+  font-family: 'Gothic A1', sans-serif;
+}

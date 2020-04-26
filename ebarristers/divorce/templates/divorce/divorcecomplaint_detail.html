@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+
+<body>
+  <div class="card mt-5 mb-3">
+    <div class="card-body">
+      <h3 class='mb-3'>Personal Details</h3>
+      <hr>
+      <div class="form-row">
+          <div class="col-12 col-md-6">
+            <p><strong>Name:  </strong>{{ divorcecomplaint.o_name }}</p>
+            <p><strong>Email:  </strong>{{ divorcecomplaint.o_email }}</p>
+            <p><strong>Contact:  </strong>{{ divorcecomplaint.o_no }}</p>
+            <p><strong>State:  </strong>{{ divorcecomplaint.o_state }}</p>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <p><strong>City:  </strong>{{ divorcecomplaint.o_city }}</p>
+            <p><strong>Gender:  </strong>{{ divorcecomplaint.gender }}</p>
+            <p><strong>Age:  </strong>{{ divorcecomplaint.age }}</p>
+          </div>
+      </div>
+    </div>
+  </div>
+
+ <div class="card">
+   <div class="card-body">
+     <h3 class='mb-3'>Complaint Details</h3>
+     <hr>
+      <div class="form-row">
+          <div class="col-12 col-md-6">
+            <p><strong>Marriage year:  </strong>{{ divorcecomplaint.year }}</p>
+            <p><strong>Who wants divorce:  </strong>{{ divorcecomplaint.get_div }}</p>
+            <p><strong>Surety of divorce:  </strong>{{ divorcecomplaint.sure_div }}</p>
+            <p><strong>Complaint filed at court:  </strong>{{ divorcecomplaint.court_div }}</p>
+            <p><strong>Children you have:  </strong>{{ divorcecomplaint.children }}</p>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <p><strong>Current relation:  </strong>{{ divorcecomplaint.c_reln }}</p>
+            <p><strong>Are you employed:  </strong>{{ divorcecomplaint.o_emp }}</p>
+            <p><strong>Is your partner employed:  </strong>{{ divorcecomplaint.p_emp }}</p>
+            <p><strong>Brief description:  </strong>{{ divorcecomplaint.c_description }}</p>
+          </div>
+      </div>
+    </div>
+   </div>
+
+   {% if divorcecomplaint.p_status == 1 %}
+   <div class="card mt-3">
+     <div class="card-body">
+       <h3 class='mb-3'>Complaint Tracking</h3>
+       <hr>
+       <div class="col-12 col-md-6">
+         <p><strong>Complaint Status:  </strong>{{ divorcecomplaint.admin_reply }}</p>
+
+         {% if divorcecomplaint.admin_document %}
+           <p><strong>Complaint related documents:  </strong><a href="{{ divorcecomplaint.admin_document.url }}">Click here</a></p>
+         {% endif %}
+       </div>
+     </div>
+   </div>
+
+   <div class="card mt-3">
+     <div class="card-body">
+       <h3 class='mb-3'>Payment Details</h3>
+       <hr>
+       <p><strong>Order ID:  </strong>{{ divorcecomplaint.new_cid }}</p>
+       <p><strong>Payment status:  </strong>Success</p>
+       <p><strong>Transaction ID:  </strong>{{ divorcecomplaint.txn_id }}</p>
+       <p><strong>Payment Date:  </strong>{{ divorcecomplaint.p_date }}</p>
+       <p><strong>Amount:  </strong>{{ divorcecomplaint.c_amt }}</p>
+     </div>
+   </div>
+   {% endif %}
+
+
+
+  <div class="d-flex justify-content-between mb-5">
+    <a href="{% url 'divorce:update_d' object.dc_id %}" class="mt-2">
+      <svg class="bi bi-pencil-square" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15.502 1.94a.5.5 0 010 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 01.707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 00-.121.196l-.805 2.414a.25.25 0 00.316.316l2.414-.805a.5.5 0 00.196-.12l6.813-6.814z"/>
+      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-6a.5.5 0 00-1 0v6a.5.5 0 01-.5.5h-11a.5.5 0 01-.5-.5v-11a.5.5 0 01.5-.5H9a.5.5 0 000-1H2.5A1.5 1.5 0 001 2.5v11z" clip-rule="evenodd"/>
+      </svg>
+    </a>
+
+    {% if divorcecomplaint.p_status == 0 %}
+    <a class="btn btn-outline-primary mt-2" href="{% url 'divorce:payment' object.dc_id %}">Payment</a>
+    {% endif %}
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="consu_btn">
+  <span class="consu_btn " >
+    {% if divorcecomplaint.p_status == 0 %}
+        <a class="btn btn-success" href="{% url 'divorce:payment' object.dc_id %}">payment</a>
+      {% endif %}
+
+      <a class="btn btn-warning"  href="{% url 'divorce:update_d' object.dc_id %}">Edit</a>
+
+
+  </span>
+
+</div> -->
+</body>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Detail View</title>
+  </head>
+  <body>
+    <h1>Detail View</h1>
+      <p>{{ divorcecomplaint.o_name }}</p>
+      <p>{{ divorcecomplaint.o_email }}</p>
+      <p>{{ divorcecomplaint.o_no }}</p>
+      <p>{{ divorcecomplaint.o_state }}</p>
+      <p>{{ divorcecomplaint.o_city }}</p>
+
+      <p>{{ divorcecomplaint.gender }}</p>
+      <p>{{ divorcecomplaint.age }}</p>
+      <p>{{ divorcecomplaint.year }}</p>
+      <p>{{ divorcecomplaint.get_div }}</p>
+      <p>{{ divorcecomplaint.sure_div }}</p>
+      <p>{{ divorcecomplaint.court_div }}</p>
+      <p>{{ divorcecomplaint.children }}</p>
+      <p>{{ divorcecomplaint.c_reln }}</p>
+      <p>{{ divorcecomplaint.o_emp }}</p>
+      <p>{{ divorcecomplaint.p_emp }}</p>
+      <p>{{ divorcecomplaint.c_description }}</p>
+
+
+      {% if divorcecomplaint.p_status == 0 %}
+        <a href="{% url 'divorce:payment' object.dc_id %}">payment</a>
+      {% endif %}
+
+      <a href="{% url 'divorce:update_d' object.dc_id %}">Edit</a>
+
+
+
+  </body>
+</html> -->

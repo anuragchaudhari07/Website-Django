@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+
+<body>
+  <div class="card mt-5 mb-3">
+    <div class="card-body">
+      <h3 class='mb-3'>Personal Details</h3>
+      <hr>
+      <div class="form-row">
+          <div class="col-12 col-md-6">
+            <p><strong>Name:  </strong>{{ domesticcomplaint.o_name }}</p>
+            <p><strong>Address:  </strong>{{ domesticcomplaint.o_adds }}</p>
+            <p><strong>State:  </strong>{{ domesticcomplaint.o_state }}</p>
+            <p><strong>City:  </strong>{{ domesticcomplaint.o_city }}</p>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <p><strong>Email:  </strong>{{ domesticcomplaint.o_email }}</p>
+            <p><strong>Contact:  </strong>{{ domesticcomplaint.o_no }}</p>
+            <p><strong>Gender:  </strong>{{ domesticcomplaint.gender }}</p>
+          </div>
+      </div>
+    </div>
+  </div>
+
+ <div class="card">
+   <div class="card-body">
+     <h3 class='mb-3'>Respondent Details</h3>
+     <hr>
+      <div class="form-row">
+          <div class="col-12 col-md-6">
+            <p><strong>Name:  </strong>{{ domesticcomplaint.acc_name }}</p>
+            <p><strong>Address:  </strong>{{ domesticcomplaint.acc_adds }}</p>
+            <p><strong>State:  </strong>{{ domesticcomplaint.acc_state }}</p>
+            <p><strong>City:  </strong>{{ domesticcomplaint.acc_city }}</p>
+            <p><strong>Email:  </strong>{{ domesticcomplaint.acc_email }}</p>
+            <p><strong>Contact:  </strong>{{ domesticcomplaint.acc_no }}</p>
+            <p><strong>Gender:  </strong>{{ domesticcomplaint.acc_gender }}</p>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <p><strong>Case pending at any other court:  </strong>{{ domesticcomplaint.case_pending_a }}</p>
+            <p><strong>Case pending at any women association court:  </strong>{{ domesticcomplaint.case_pending_w }}</p>
+            <p><strong>Brief Description:  </strong>{{ domesticcomplaint.c_description }}</p>
+          </div>
+      </div>
+    </div>
+   </div>
+
+   {% if domesticcomplaint.p_status == 1 %}
+   <div class="card mt-3">
+     <div class="card-body">
+       <h3 class='mb-3'>Complaint Tracking</h3>
+       <hr>
+       <div class="col-12 col-md-6">
+         <p><strong>Complaint Status:  </strong>{{ domesticcomplaint.admin_reply }}</p>
+
+         {% if domesticcomplaint.admin_document %}
+           <p><strong>Complaint related documents:  </strong><a href="{{ domesticcomplaint.admin_document.url }}">Click here</a></p>
+         {% endif %}
+       </div>
+     </div>
+   </div>
+
+   <div class="card mt-3">
+     <div class="card-body">
+       <h3 class='mb-3'>Payment Details</h3>
+       <hr>
+       <p><strong>Order ID:  </strong>{{ domesticcomplaint.new_cid }}</p>
+       <p><strong>Payment status:  </strong>Success</p>
+       <p><strong>Transaction ID:  </strong>{{ domesticcomplaint.txn_id }}</p>
+       <p><strong>Payment Date:  </strong>{{ domesticcomplaint.p_date }}</p>
+       <p><strong>Amount:  </strong>{{ domesticcomplaint.c_amt }}</p>
+     </div>
+   </div>
+   {% endif %}
+
+
+
+  <div class="d-flex justify-content-between mb-5">
+    <a href="{% url 'domestic:update_do' object.doc_id %}" class="mt-2">
+      <svg class="bi bi-pencil-square" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15.502 1.94a.5.5 0 010 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 01.707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 00-.121.196l-.805 2.414a.25.25 0 00.316.316l2.414-.805a.5.5 0 00.196-.12l6.813-6.814z"/>
+      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-6a.5.5 0 00-1 0v6a.5.5 0 01-.5.5h-11a.5.5 0 01-.5-.5v-11a.5.5 0 01.5-.5H9a.5.5 0 000-1H2.5A1.5 1.5 0 001 2.5v11z" clip-rule="evenodd"/>
+      </svg>
+    </a>
+
+    {% if domesticcomplaint.p_status == 0 %}
+    <a class="btn btn-outline-primary mt-2" href="{% url 'domestic:payment' object.doc_id %}">Payment</a>
+    {% endif %}
+
+  </div>
+</body>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Detail View</title>
+  </head>
+  <body>
+    <h1>Detail View</h1>
+    <p>{{ domesticcomplaint.o_name }}</p>
+    <p>{{ domesticcomplaint.o_email }}</p>
+    <p>{{ domesticcomplaint.o_no }}</p>
+    <p>{{ domesticcomplaint.o_state }}</p>
+    <p>{{ domesticcomplaint.o_city }}</p>
+
+
+    <p>{{ domesticcomplaint.o_adds }}</p>
+    <p>{{ domesticcomplaint.gender }}</p>
+    <p>{{ domesticcomplaint.acc_name }}</p>
+    <p>{{ domesticcomplaint.acc_adds }}</p>
+    <p>{{ domesticcomplaint.acc_state }}</p>
+    <p>{{ domesticcomplaint.acc_city }}</p>
+    <p>{{ domesticcomplaint.acc_email }}</p>
+    <p>{{ domesticcomplaint.acc_no }}</p>
+    <p>{{ domesticcomplaint.acc_gender }}</p>
+    <p>{{ domesticcomplaint.case_pending_a }}</p>
+    <p>{{ domesticcomplaint.case_pending_w }}</p>
+    <p>{{ domesticcomplaint.c_description }}</p>
+
+    {% if domesticomplaint.p_status == 0 %}
+      <a href="{% url 'domestic:payment' object.doc_id %}">Payment</a>
+    {% endif %}
+
+    <a href="{% url 'domestic:update_do' object.doc_id %}">Edit</a>
+
+
+
+  </body>
+</html> -->
