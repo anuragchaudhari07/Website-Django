@@ -21,7 +21,7 @@ ICC_CHOICES = (
 
 class DomesticComplaint(models.Model):
 
-    doc_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,verbose_name='Complainant Name')  #pk
+    doc_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,verbose_name='Complaint ID')  #pk
 
     # own info of customer
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete = models.CASCADE,null=True)
